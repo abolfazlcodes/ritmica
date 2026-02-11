@@ -22,6 +22,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
@@ -37,6 +38,31 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "/assets/fonts/public-sans/PublicSans-Black.ttf",
+            "/assets/fonts/public-sans/PublicSans-BlackItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-Bold.ttf",
+            "/assets/fonts/public-sans/PublicSans-BoldItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-ExtraBold.ttf",
+            "/assets/fonts/public-sans/PublicSans-ExtraBoldItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-ExtraLight.ttf",
+            "/assets/fonts/public-sans/PublicSans-ExtraLightItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-Italic.ttf",
+            "/assets/fonts/public-sans/PublicSans-Light.ttf",
+            "/assets/fonts/public-sans/PublicSans-LightItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-Medium.ttf",
+            "/assets/fonts/public-sans/PublicSans-MediumItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-Regular.ttf",
+            "/assets/fonts/public-sans/PublicSans-SemiBold.ttf",
+            "/assets/fonts/public-sans/PublicSans-SemiBoldItalic.ttf",
+            "/assets/fonts/public-sans/PublicSans-Thin.ttf",
+            "/assets/fonts/public-sans/PublicSans-ThinItalic.ttf"
+          ]
         }
       ]
     ],

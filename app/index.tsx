@@ -9,7 +9,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>The start of Ritmica project.</Text>
+      <Text className={"text-red-500"}>The start of Ritmica project.</Text>
     </View>
   );
 }
