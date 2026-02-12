@@ -16,6 +16,7 @@ import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { WelcomeScreensData } from "@/constants/data/welcome-screens";
 import WelcomeFeature from "@/components/ui/welcom-feature";
+import Button from "@/components/ui/Button";
 
 const WelcomePage = () => {
   const router = useRouter();
@@ -100,7 +101,7 @@ const WelcomePage = () => {
           {current.title.map((line, index) => (
             <Text
               key={index}
-              className={`text-center font-bold text-[#212B36] ${
+              className={`text-center font-bold text-text-primary ${
                 step === 0 ? "text-2xl" : "text-4xl"
               }`}
             >
@@ -158,14 +159,11 @@ const WelcomePage = () => {
         {/* go to login page button section */}
         {step === 1 && (
           <View className="mt-20 py-8 px-4">
-            <Pressable
-              className="bg-primary-main min-h-12 min-w-16 w-full flex items-center justify-center rounded-2xl px-4 py-3"
-              onPress={authRedirectHandler}
-            >
+            <Button title="" onPress={authRedirectHandler}>
               <Text className="text-white font-publicsans font-bold text-lg">
                 Continue
               </Text>
-            </Pressable>
+            </Button>
           </View>
         )}
       </ScrollView>
