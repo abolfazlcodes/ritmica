@@ -17,7 +17,8 @@ const WelcomeFeature: React.FC<IWelcomeFeatureProps> = ({
   return (
     <View className="flex gap-5 items-center flex-row">
       <View
-        className={`w-10 flex items-center justify-center h-10 rounded-full bg-[${bgColor}]`}
+        style={{ backgroundColor: bgColor }}
+        className={`w-10 flex items-center justify-center h-10 rounded-full`}
       >
         {icon}
       </View>

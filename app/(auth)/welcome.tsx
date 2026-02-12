@@ -1,7 +1,15 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  Animated,
+  Dimensions,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import images from "@/constants/images";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IconUserKey } from "@/constants/icons";
 import { Pressable } from "expo-router/build/views/Pressable";
 import { useRouter } from "expo-router";
@@ -14,13 +22,58 @@ const WelcomePage = () => {
   const [step, setStep] = useState<number>(0); // only 1 or 2 - based on how many slides
   const current = WelcomeScreensData[step];
 
-  const nextSlideHandler = () => {
-    setStep((prev) => prev + 1);
-  };
+  const { width } = Dimensions.get("window");
+  const titleAnim = useRef(new Animated.Value(width)).current;
+  const featureAnim = useRef(new Animated.Value(width)).current;
 
   const authRedirectHandler = () => {
     router.push("/(auth)/sign-in");
   };
+
+  const nextSlideHandler = () => {
+    if (step >= WelcomeScreensData.length - 1) {
+      authRedirectHandler();
+      return;
+    }
+
+    // slide title and features out to the left
+    Animated.parallel([
+      Animated.timing(titleAnim, {
+        toValue: -width, // move left offscreen
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(featureAnim, {
+        toValue: -width,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      // update step after the slide out completes
+      setStep((prev) => prev + 1);
+    });
+  };
+
+  useEffect(() => {
+    // reset positions
+    titleAnim.setValue(width);
+    featureAnim.setValue(width);
+
+    // animate title in first
+    Animated.timing(titleAnim, {
+      toValue: 0,
+      duration: 350,
+      useNativeDriver: true,
+    }).start();
+
+    // animate features after 200ms
+    Animated.timing(featureAnim, {
+      toValue: 0,
+      duration: 350,
+      delay: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [step]);
 
   return (
     <SafeAreaView className="bg-background-default h-full font-publicsans">
@@ -40,7 +93,8 @@ const WelcomePage = () => {
           </View>
         )}
 
-        <View
+        <Animated.View
+          style={{ transform: [{ translateX: titleAnim }] }}
           className={`mt-16 p-6 flex flex-col gap-y-2 text-center ${step === 0 ? "h-full max-h-[290px]" : "mb-14"}`}
         >
           {current.title.map((line, index) => (
@@ -59,10 +113,12 @@ const WelcomePage = () => {
               {current.description}
             </Text>
           )}
-        </View>
+        </Animated.View>
 
         {step === 0 && (
-          <View className="flex flex-row justify-between px-6 py-10">
+          <View
+            className={`flex flex-row justify-between px-6 py-10 ease-in transition-all ${step === 0 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"}`}
+          >
             <View className="flex items-center flex-row gap-3">
               <View className="w-2 h-2 rounded-full bg-primary-main"></View>
               <View className="w-2 h-2 rounded-full bg-[#add9ff]"></View>
@@ -81,7 +137,10 @@ const WelcomePage = () => {
 
         {/* List of Features content */}
         {current.features && (
-          <View className="px-6 mt-10 mb-20 gap-y-9">
+          <Animated.View
+            style={{ transform: [{ translateX: featureAnim }] }}
+            className="px-6 mt-10 mb-20 gap-y-9"
+          >
             {current.features.map((feature, index) => (
               <WelcomeFeature
                 key={feature?.title}
@@ -93,7 +152,7 @@ const WelcomePage = () => {
                 icon={<IconUserKey />}
               />
             ))}
-          </View>
+          </Animated.View>
         )}
 
         {/* go to login page button section */}
