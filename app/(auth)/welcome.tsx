@@ -23,13 +23,13 @@ const WelcomePage = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full font-publicsans">
+    <SafeAreaView className="bg-background-default h-full font-publicsans">
       <ScrollView contentContainerClassName="h-full">
         <StatusBar style="auto" />
         {step === 0 && (
           <View className="relative flex items-center justify-center">
-            <View className="absolute bg-white top-10 left-16 p-3 w-[264px] h-[282px] rounded-[48px]">
-              <View className="bg-[#2FA8FF] w-[264px] h-[282px] rounded-[48px]" />
+            <View className="absolute bg-background-default top-10 left-16 p-3 w-[264px] h-[282px] rounded-[48px]">
+              <View className="bg-background-blue w-[264px] h-[282px] rounded-[48px]" />
             </View>
 
             <Image
@@ -55,7 +55,7 @@ const WelcomePage = () => {
           ))}
 
           {current.description && (
-            <Text className="text-center text-[#919EAB] text-base leading-6 px-6 mt-2">
+            <Text className="text-center text-text-disabled text-base leading-6 px-6 mt-2">
               {current.description}
             </Text>
           )}
@@ -64,7 +64,7 @@ const WelcomePage = () => {
         {step === 0 && (
           <View className="flex flex-row justify-between px-6 py-10">
             <View className="flex items-center flex-row gap-3">
-              <View className="w-2 h-2 rounded-full bg-[#0088FF]"></View>
+              <View className="w-2 h-2 rounded-full bg-primary-main"></View>
               <View className="w-2 h-2 rounded-full bg-[#add9ff]"></View>
             </View>
 
@@ -72,7 +72,7 @@ const WelcomePage = () => {
               className="border border-[#0088FF7A] w-16 px-2 py-1 flex items-center justify-center rounded-lg bg-white"
               onPress={nextSlideHandler}
             >
-              <Text className="text-[#0088FF] font-bold font-publicsans leading-5">
+              <Text className="text-primary-main font-bold font-publicsans leading-5">
                 Skip
               </Text>
             </TouchableOpacity>
@@ -100,7 +100,7 @@ const WelcomePage = () => {
         {step === 1 && (
           <View className="mt-20 py-8 px-4">
             <Pressable
-              className="bg-[#0088FF] min-h-12 min-w-16 w-full flex items-center justify-center rounded-2xl px-4 py-3"
+              className="bg-primary-main min-h-12 min-w-16 w-full flex items-center justify-center rounded-2xl px-4 py-3"
               onPress={authRedirectHandler}
             >
               <Text className="text-white font-publicsans font-bold text-lg">

@@ -22,10 +22,10 @@ const WelcomeFeature: React.FC<IWelcomeFeatureProps> = ({
         {icon}
       </View>
       <View className="flex-1">
-        <Text className="text-[#212B36] text-lg leading-6 font-public-sans-semibold font-semibold">
+        <Text className="text-text-primary text-lg leading-6 font-public-sans-semibold font-semibold">
           {title}
         </Text>
-        <Text className="text-[#919EAB] text-base leading-5 font-publicsans">
+        <Text className="text-text-disabled text-base leading-5 font-publicsans">
           {description}
         </Text>
       </View>
