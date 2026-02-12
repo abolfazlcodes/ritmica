@@ -1,17 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // NOTE: Update this to include the paths to all files that contain Nativewind classes.
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
       fontFamily: {
         publicsans: ["PublicSans", "sans-serif"],
-        "rubik-bold": ["Rubik-Bold", "sans-serif"],
-        "rubik-extrabold": ["Rubik-ExtraBold", "sans-serif"],
-        "rubik-medium": ["Rubik-Medium", "sans-serif"],
-        "rubik-semibold": ["Rubik-SemiBold", "sans-serif"],
-        "rubik-light": ["Rubik-Light", "sans-serif"],
+        "public-sans-bold": ["PublicSans-Bold", "sans-serif"],
+        "public-sans-extrabold": ["PublicSans-ExtraBold", "sans-serif"],
+        "public-sans-medium": ["PublicSans-Medium", "sans-serif"],
+        "public-sans-semibold": ["PublicSans-SemiBold-SemiBold", "sans-serif"],
+        "public-sans-light": ["PublicSans-Light", "sans-serif"],
       },
       // colors: {
       //   primary: {
