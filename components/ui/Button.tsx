@@ -1,15 +1,21 @@
 import { Pressable } from "expo-router/build/views/Pressable";
-import { ButtonProps, Text, View } from "react-native";
+import { ButtonProps, View } from "react-native";
 
 interface IButtonProps extends ButtonProps {
   children: React.ReactNode;
+  wrapperClassName?: string;
 }
 
-const Button: React.FC<IButtonProps> = ({ onPress, children, ...rest }) => {
+const Button: React.FC<IButtonProps> = ({
+  onPress,
+  children,
+  wrapperClassName,
+  ...rest
+}) => {
   return (
-    <View className="mt-20 py-8 px-4">
+    <View className={`py-8 ${wrapperClassName}`}>
       <Pressable
-        className="bg-primary-main min-h-12 min-w-16 w-full flex items-center justify-center rounded-2xl px-4 py-3"
+        className="bg-primary-main min-h-14 min-w-16 w-full flex items-center justify-center rounded-2xl px-4 py-3"
         onPress={onPress}
         {...rest}
       >
