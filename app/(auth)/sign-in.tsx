@@ -10,10 +10,11 @@ import FloatingLabelInput from "@/components/inputs/FloatingInput";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { IconArrowRight, IconEyeClosed, IconEyeOpen } from "@/constants/icons";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import AuthActions from "@/components/ui/AuthActions";
 
 const SignInPage = () => {
+  const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
@@ -68,6 +69,7 @@ const SignInPage = () => {
             title=""
             onPress={() => {
               console.log("clicked");
+              router.push("/(root)/home");
             }}
           >
             <Text className="text-white font-publicsans font-bold text-lg">
