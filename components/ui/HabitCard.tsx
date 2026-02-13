@@ -7,8 +7,12 @@ import {
   generateUnlimited,
   generateMonthly,
 } from "@/lib/grids";
+import HabitWeeklyCard from "@/components/ui/HabitWeeklyCard";
+import { IconDumbell } from "@/constants/icons";
+import HabitCardUnlimited from "@/components/ui/HabitCardUnlimited";
+import HabitMonthlyCard from "@/components/ui/HabitMonthlyCard";
 
-type Variant = "weekly" | "monthly" | "unlimited";
+export type Variant = "weekly" | "monthly" | "unlimited";
 
 type HabitCardProps = {
   title: string;
@@ -30,12 +34,38 @@ const HabitCard = ({ title, variant, completedDays }: HabitCardProps) => {
     }
   }, [variant]);
 
-  return (
-    <View className="bg-white rounded-2xl p-4 mb-4">
-      <Text className="text-base font-semibold mb-3">{title}</Text>
+  if (variant === "weekly") {
+    return (
+      <HabitWeeklyCard
+        cells={cells as number[]}
+        title={title}
+        completedDays={completedDays}
+        bgColor={"#FFAB00"}
+        icon={<IconDumbell />}
+      />
+    );
+  }
 
-      <HabitGrid cells={cells as number[]} completedDays={completedDays} />
-    </View>
+  if (variant === "monthly") {
+    return (
+      <HabitMonthlyCard
+        cells={cells as number[]}
+        title={"Fitness"}
+        completedDays={completedDays}
+        bgColor={"#FF5630"}
+        icon={<IconDumbell />}
+      />
+    );
+  }
+
+  return (
+    <HabitCardUnlimited
+      cells={cells as number[]}
+      title={"Fitness"}
+      completedDays={completedDays}
+      bgColor={"#22C55E"}
+      icon={<IconDumbell className="w-6 h-6" width={24} height={24} />}
+    />
   );
 };
 

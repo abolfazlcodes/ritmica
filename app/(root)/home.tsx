@@ -5,8 +5,8 @@ import HabitsList from "@/components/ui/HabitsList";
 
 export default function Home() {
   return (
-    <SafeAreaView className="h-full font-publicsans">
-      <View className="h-full px-6">
+    <SafeAreaView className="h-full flex-1 font-publicsans">
+      <View className="h-full flex-1 px-6">
         <HomeHeader />
         <HabitsList />
       </View>
