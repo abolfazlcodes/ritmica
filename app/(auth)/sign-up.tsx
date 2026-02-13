@@ -7,13 +7,14 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FloatingLabelInput from "@/components/inputs/FloatingInput";
-import { IconArrowRight, IconEyeClosed, IconEyeOpen } from "@/constants/icons";
-import { Link } from "expo-router";
+import { IconEyeClosed, IconEyeOpen } from "@/constants/icons";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
 import AuthActions from "@/components/ui/AuthActions";
+import { useRouter } from "expo-router";
 
 const SignUpPage = () => {
+  const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordConfirmationVisible, setIsPasswordConfirmationVisible] =
     useState(false);
@@ -76,6 +77,7 @@ const SignUpPage = () => {
             title=""
             onPress={() => {
               console.log("clicked");
+              router.push("/(root)/home");
             }}
           >
             <Text className="text-white font-publicsans font-bold text-lg">
