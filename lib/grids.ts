@@ -4,7 +4,7 @@ export function generateWeekly() {
 
 export function generateMonthly() {
   const now = new Date();
-  const days = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const days = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
   return Array.from({ length: days });
 }
 

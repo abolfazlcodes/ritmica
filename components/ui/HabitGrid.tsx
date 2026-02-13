@@ -1,17 +1,30 @@
 import { View } from "react-native";
 import React from "react";
 
-const CELL_SIZE = 10;
-const GAP = 4;
+interface IHabitGridProps {
+  cellSize?: number;
+  cells: number[];
+  completedDays: number[];
+  gap?: number;
+  filledBgColor?: string;
+  radius?: number;
+}
 
 const HabitGrid = React.memo(
-  ({ cells, completedDays }: { cells: number[]; completedDays: number[] }) => {
+  ({
+    cells,
+    completedDays,
+    cellSize = 10,
+    gap = 4,
+    filledBgColor = "#FF5630",
+    radius = 5,
+  }: IHabitGridProps) => {
     return (
       <View
         style={{
           flexDirection: "row",
           flexWrap: "wrap",
-          gap: GAP,
+          gap: gap,
         }}
       >
         {cells.map((_, index) => {
@@ -21,10 +34,10 @@ const HabitGrid = React.memo(
             <View
               key={index}
               style={{
-                width: CELL_SIZE,
-                height: CELL_SIZE,
-                borderRadius: 2,
-                backgroundColor: active ? "#FF5630" : "#E0E0E0",
+                width: cellSize,
+                height: cellSize,
+                borderRadius: radius,
+                backgroundColor: active ? filledBgColor : "#919EAB33",
               }}
             />
           );

@@ -1,14 +1,24 @@
-import { View, Text, Animated, Pressable, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Animated,
+  Pressable,
+  FlatList,
+  Platform,
+} from "react-native";
 import { useState, useRef } from "react";
 
-import HabitCard from "@/components/ui/HabitCard";
+import HabitCard, { Variant } from "@/components/ui/HabitCard";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
-const TABS = ["Weekly", "Monthly", "Unlimited"];
+const TABS = ["weekly", "monthly", "unlimited"];
 
 const HabitsList = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const translateX = useRef(new Animated.Value(0)).current;
   const [tabWidth, setTabWidth] = useState(0);
+
+  const tabBarHeight = useBottomTabBarHeight();
 
   const handleTabPress = (index: number) => {
     setActiveIndex(index);
@@ -20,7 +30,7 @@ const HabitsList = () => {
   };
 
   return (
-    <View>
+    <View className="flex-1">
       {/* Tabs filter section */}
       <View
         className="flex flex-row relative border-b border-b-[#919EAB14] mt-2"
@@ -36,7 +46,7 @@ const HabitsList = () => {
             onPress={() => handleTabPress(index)}
           >
             <Text
-              className={`font-semibold text-base ${
+              className={`font-semibold capitalize text-base ${
                 activeIndex === index
                   ? "text-primary-main"
                   : "text-text-secondary"
@@ -61,13 +71,24 @@ const HabitsList = () => {
 
       {/* List items */}
       <FlatList
-        contentContainerClassName="py-4 space-y-4"
+        key={TABS[activeIndex] === "monthly" ? "grid" : "list"}
+        numColumns={TABS[activeIndex] === "monthly" ? 2 : 1}
+        columnWrapperStyle={
+          TABS[activeIndex] === "monthly" ? { gap: 16 } : undefined
+        }
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="py-4"
+        contentContainerStyle={{
+          paddingTop: 16,
+          paddingBottom: tabBarHeight + (Platform.OS === "ios" ? 0 : 24), // <- give it breathing room
+        }}
         data={data}
+        extraData={activeIndex}
         keyExtractor={(item) => item.toString()}
         renderItem={({ item }) => (
           <HabitCard
-            title={"sport"}
-            variant={"unlimited"}
+            title="Practice 15 minutes of morning yoga flow"
+            variant={TABS[activeIndex] as Variant}
             completedDays={[0, 12, 20, 27]}
           />
         )}
@@ -78,4 +99,4 @@ const HabitsList = () => {
 
 export default HabitsList;
 
-const data = [1, 2, 3, 4, 5];
+const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
