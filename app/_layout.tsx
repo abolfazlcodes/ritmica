@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { View, Text } from "react-native";
 
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -41,6 +42,13 @@ export default function RootLayout() {
     <Stack>
       <Stack.Screen name={"(auth)"} options={{ headerShown: false }} />
       <Stack.Screen name={"(root)"} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="create-habit"
+        options={{
+          presentation: "modal",
+          headerShown: false,
+        }}
+      />
       <StatusBar style="auto" />
     </Stack>
   );

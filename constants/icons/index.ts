@@ -16,7 +16,9 @@ import HomeFilled from "@/constants/icons/home-filled";
 import BarChartFilled from "@/constants/icons/bar-chart-filled";
 import UserFilled from "@/constants/icons/user-filled";
 import AddPlus from "@/constants/icons/add-plus";
-import Dumbell from "@/constants/icons/dumbell";
+import Dumbbell from "@/constants/icons/dumbell";
+import PlusSquare from "@/constants/icons/plus-square";
+import Times from "@/constants/icons/times";
 
 export {
   UserKey as IconUserKey,
@@ -37,5 +39,7 @@ export {
   BarChartFilled as IconBarChartFilled,
   UserFilled as IconUserFilled,
   AddPlus as IconAddPlus,
-  Dumbell as IconDumbell,
+  Dumbbell as IconDumbell,
+  PlusSquare as IconPlusSquare,
+  Times as IconTimes,
 };
