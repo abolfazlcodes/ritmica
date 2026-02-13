@@ -5,7 +5,7 @@ import { IconGear, IconNotification } from "@/constants/icons";
 
 const HomeHeader = () => {
   return (
-    <View className="pb-2 px-5 pt-6 flex flex-row items-center justify-between">
+    <View className="pb-2 pt-6 flex flex-row items-center justify-between">
       <View className="flex flex-row gap-2 items-center">
         <View className="w-11 h-11 rounded-full relative">
           <Image

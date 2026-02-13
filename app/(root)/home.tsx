@@ -1,13 +1,15 @@
-import { ScrollView } from "react-native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HomeHeader from "@/components/ui/HomeHeader";
+import HabitsList from "@/components/ui/HabitsList";
 
 export default function Home() {
   return (
     <SafeAreaView className="h-full font-publicsans">
-      <ScrollView contentContainerClassName="h-full">
+      <View className="h-full px-6">
         <HomeHeader />
-      </ScrollView>
+        <HabitsList />
+      </View>
     </SafeAreaView>
   );
 }
