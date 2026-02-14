@@ -16,6 +16,8 @@ export type Variant = "weekly" | "monthly" | "unlimited";
 
 type HabitCardProps = {
   title: string;
+  description: string;
+  color: string;
   variant: Variant;
   completedDays: number[]; // indices of completed squares
 };
