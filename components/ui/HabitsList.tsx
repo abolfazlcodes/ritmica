@@ -7,9 +7,9 @@ import {
   Platform,
 } from "react-native";
 import { useState, useRef } from "react";
-
 import HabitCard, { Variant } from "@/components/ui/HabitCard";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { habitsData } from "@/constants/data";
 
 const TABS = ["weekly", "monthly", "unlimited"];
 
@@ -82,14 +82,16 @@ const HabitsList = () => {
           paddingTop: 16,
           paddingBottom: tabBarHeight + (Platform.OS === "ios" ? 0 : 24), // <- give it breathing room
         }}
-        data={data}
+        data={habitsData}
         extraData={activeIndex}
         keyExtractor={(item) => item.toString()}
         renderItem={({ item }) => (
           <HabitCard
-            title="Practice 15 minutes of morning yoga flow"
+            title={item?.title}
+            description={item?.description}
+            color={item?.color}
             variant={TABS[activeIndex] as Variant}
-            completedDays={[0, 12, 20, 27]}
+            completedDays={item?.completedDays}
           />
         )}
       />
@@ -98,5 +100,3 @@ const HabitsList = () => {
 };
 
 export default HabitsList;
-
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

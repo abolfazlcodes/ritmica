@@ -9,11 +9,28 @@ import {
 import Button from "@/components/ui/Button";
 import HabitEmojiModal from "@/components/forms/HabitEmojiModal";
 import { colorsData } from "@/constants/data/colors";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { HabitFormData, habitSchema } from "@/schemas/habit.schema";
 
 const AddHabitForm = () => {
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<HabitFormData>({
+    resolver: zodResolver(habitSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+      emoji: "",
+      color: "",
+    },
+  });
+
   const [search, setSearch] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   // BottomSheetModal ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -22,6 +39,10 @@ const AddHabitForm = () => {
   const openSheet = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
+
+  const onSubmit = (data: HabitFormData) => {
+    console.log("Habit created:", data);
+  };
 
   return (
     <BottomSheetModalProvider>
@@ -49,60 +70,98 @@ const AddHabitForm = () => {
         </View>
 
         {/* Inputs */}
-        <FloatingLabelInput label="Habit Name" />
-        <FloatingLabelInput label="Description" multiline numberOfLines={5} />
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, value } }) => (
+            <>
+              <FloatingLabelInput
+                label="Habit Name"
+                value={value}
+                onChangeText={onChange}
+              />
+              {errors.name && (
+                <Text style={{ color: "red" }}>{errors.name.message}</Text>
+              )}
+            </>
+          )}
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value } }) => (
+            <FloatingLabelInput
+              label="Description"
+              value={value}
+              onChangeText={onChange}
+              multiline
+              numberOfLines={5}
+            />
+          )}
+        />
 
         {/* Colors */}
-        {/* Colors */}
-        <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            gap: 8,
-            marginTop: 16,
-          }}
-        >
-          {colorsData.map((color, i) => (
-            <Pressable key={i} onPress={() => setSelectedColor(color)}>
-              <View style={{ padding: 6 }}>
-                <View
-                  style={{
-                    width: 24,
-                    height: 24,
-                    borderRadius: 4,
-                    backgroundColor: color,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    ...(selectedColor === color
-                      ? {
-                          // iOS shadow
-                          shadowColor: color,
-                          shadowOpacity: 0.5,
-                          shadowOffset: { width: 2, height: 2 },
-                          shadowRadius: 8,
-                          // Android shadow
-                          elevation: 6,
-                        }
-                      : {}),
+        <Controller
+          control={control}
+          name="color"
+          render={({ field: { onChange, value } }) => (
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: 8,
+                marginTop: 16,
+              }}
+            >
+              {colorsData.map((color, i) => (
+                <Pressable
+                  key={i}
+                  onPress={() => {
+                    onChange(color);
                   }}
                 >
-                  {selectedColor === color && (
-                    <IconCheckmark style={{ width: 12, height: 12 }} />
-                  )}
-                </View>
-              </View>
-            </Pressable>
-          ))}
-        </View>
+                  <View style={{ padding: 6 }}>
+                    <View
+                      style={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: 4,
+                        backgroundColor: color,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        ...(value === color
+                          ? {
+                              // Shadow for selected color
+                              shadowColor: color,
+                              shadowOpacity: 0.3,
+                              shadowOffset: { width: 2, height: 2 },
+                              shadowRadius: 8,
+                              elevation: 6,
+                            }
+                          : {}),
+                      }}
+                    >
+                      {value === color && (
+                        <IconCheckmark style={{ width: 12, height: 12 }} />
+                      )}
+                    </View>
+                  </View>
+                </Pressable>
+              ))}
+              {errors.color && (
+                <Text style={{ color: "red", marginTop: 4 }}>
+                  {errors.color.message}
+                </Text>
+              )}
+            </View>
+          )}
+        />
 
         {/* Submit Button */}
         <Button
+          onPress={handleSubmit(onSubmit)} // ✅ attach handleSubmit directly
           title="submit_btn"
           wrapperClassName="mt-20"
-          onPress={() => {
-            console.log("clicked");
-            // router.push("/(root)/home");
-          }}
         >
           <Text className="text-white font-publicsans font-bold text-lg">
             Create
@@ -112,6 +171,7 @@ const AddHabitForm = () => {
         <HabitEmojiModal
           search={search}
           setSearch={setSearch}
+          setValue={setValue}
           setSelectedEmoji={setSelectedEmoji}
           bottomSheetModalRef={bottomSheetModalRef}
         />
