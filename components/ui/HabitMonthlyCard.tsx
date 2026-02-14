@@ -21,7 +21,7 @@ const HabitMonthlyCard: React.FC<IHabitMonthlyCardProps> = ({
     <View className="bg-white rounded-[10px] max-w-[165px] flex gap-y-2 px-2 py-4 mb-4">
       <View className="flex flex-row gap-x-2 py-3">
         {icon && icon}
-        <Text className="text-text-primary font-bold font-publicsans text-base">
+        <Text className="text-text-primary capitalize font-bold font-publicsans text-base">
           {title}
         </Text>
       </View>

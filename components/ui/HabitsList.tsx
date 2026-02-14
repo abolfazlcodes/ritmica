@@ -9,11 +9,16 @@ import {
 import { useState, useRef } from "react";
 import HabitCard, { Variant } from "@/components/ui/HabitCard";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { habitsData } from "@/constants/data";
+import { IHabit } from "@/constants/data";
 
 const TABS = ["weekly", "monthly", "unlimited"];
 
-const HabitsList = () => {
+interface IHabitsListProps {
+  data: IHabit[];
+}
+
+const HabitsList: React.FC<IHabitsListProps> = ({ data }) => {
+  const [habitsDataList, setHabitsDataList] = useState(data || []);
   const [activeIndex, setActiveIndex] = useState(0);
   const translateX = useRef(new Animated.Value(0)).current;
   const [tabWidth, setTabWidth] = useState(0);
@@ -82,9 +87,9 @@ const HabitsList = () => {
           paddingTop: 16,
           paddingBottom: tabBarHeight + (Platform.OS === "ios" ? 0 : 24), // <- give it breathing room
         }}
-        data={habitsData}
+        data={habitsDataList}
         extraData={activeIndex}
-        keyExtractor={(item) => item.toString()}
+        keyExtractor={(item) => item?.id.toString()}
         renderItem={({ item }) => (
           <HabitCard
             title={item?.title}

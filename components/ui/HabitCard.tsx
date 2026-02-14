@@ -22,7 +22,13 @@ type HabitCardProps = {
   completedDays: number[]; // indices of completed squares
 };
 
-const HabitCard = ({ title, variant, completedDays }: HabitCardProps) => {
+const HabitCard = ({
+  title,
+  variant,
+  completedDays,
+  color,
+  description,
+}: HabitCardProps) => {
   const cells = useMemo(() => {
     switch (variant) {
       case "weekly":
@@ -42,7 +48,8 @@ const HabitCard = ({ title, variant, completedDays }: HabitCardProps) => {
         cells={cells as number[]}
         title={title}
         completedDays={completedDays}
-        bgColor={"#FFAB00"}
+        bgColor={color}
+        description={description}
         icon={<IconDumbell />}
       />
     );
@@ -52,9 +59,9 @@ const HabitCard = ({ title, variant, completedDays }: HabitCardProps) => {
     return (
       <HabitMonthlyCard
         cells={cells as number[]}
-        title={"Fitness"}
+        title={title}
         completedDays={completedDays}
-        bgColor={"#FF5630"}
+        bgColor={color}
         icon={<IconDumbell />}
       />
     );
@@ -63,9 +70,9 @@ const HabitCard = ({ title, variant, completedDays }: HabitCardProps) => {
   return (
     <HabitCardUnlimited
       cells={cells as number[]}
-      title={"Fitness"}
+      title={title}
       completedDays={completedDays}
-      bgColor={"#22C55E"}
+      bgColor={color}
       icon={<IconDumbell className="w-6 h-6" width={24} height={24} />}
     />
   );

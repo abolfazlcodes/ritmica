@@ -8,6 +8,7 @@ interface IHabitWeeklyCardProps {
   completedDays: number[];
   bgColor: string;
   icon?: ReactNode;
+  description?: string;
 }
 
 const HabitWeeklyCard: React.FC<IHabitWeeklyCardProps> = ({
@@ -15,19 +16,20 @@ const HabitWeeklyCard: React.FC<IHabitWeeklyCardProps> = ({
   title,
   completedDays,
   bgColor,
+  description,
   icon,
 }) => {
   return (
     <View className="bg-white rounded-[10px] flex gap-y-2 px-2 py-4 mb-4">
       <Text className="text-base font-semibold mb-3 font-publicsans text-text-primary">
-        {title}
+        {description}
       </Text>
 
       <View className="flex flex-row items-center justify-between">
         <View className="flex flex-row gap-x-2">
           {icon && icon}
-          <Text className="text-text-disabled font-publicsans text-sm">
-            Fitness
+          <Text className="text-text-disabled capitalize font-publicsans text-sm">
+            {title}
           </Text>
         </View>
         <HabitGrid
