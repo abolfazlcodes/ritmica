@@ -19,6 +19,8 @@ import AddPlus from "@/constants/icons/add-plus";
 import Dumbbell from "@/constants/icons/dumbell";
 import PlusSquare from "@/constants/icons/plus-square";
 import Times from "@/constants/icons/times";
+import ImagePlus from "@/constants/icons/image-puls";
+import Checkmark from "@/constants/icons/checkmark";
 
 export {
   UserKey as IconUserKey,
@@ -42,4 +44,6 @@ export {
   Dumbbell as IconDumbell,
   PlusSquare as IconPlusSquare,
   Times as IconTimes,
+  ImagePlus as IconImagePlus,
+  Checkmark as IconCheckmark,
 };

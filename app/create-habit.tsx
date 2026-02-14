@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconTimes } from "@/constants/icons";
 import { useRouter } from "expo-router";
-import FloatingLabelInput from "@/components/inputs/FloatingInput";
+import AddHabitForm from "@/components/forms/add-habit-form";
 
 // --------------------------------------
 /*
@@ -56,18 +56,7 @@ const CreateHabit = () => {
               <View style={{ width: 24 }} />
             </View>
 
-            {/* form fields */}
-            <View
-              style={{ paddingHorizontal: 20, paddingTop: 44 }}
-              className="border border-error-main flex flex-col gap-y-6"
-            >
-              <FloatingLabelInput label={"Habit Name"} />
-              <FloatingLabelInput
-                label={"Description"}
-                multiline={true}
-                numberOfLines={5}
-              />
-            </View>
+            <AddHabitForm />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

@@ -1,6 +1,5 @@
 import { Stack } from "expo-router";
-import { View, Text } from "react-native";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
@@ -39,17 +38,19 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name={"(auth)"} options={{ headerShown: false }} />
-      <Stack.Screen name={"(root)"} options={{ headerShown: false }} />
-      <Stack.Screen
-        name="create-habit"
-        options={{
-          presentation: "modal",
-          headerShown: false,
-        }}
-      />
-      <StatusBar style="auto" />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack>
+        <Stack.Screen name={"(auth)"} options={{ headerShown: false }} />
+        <Stack.Screen name={"(root)"} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="create-habit"
+          options={{
+            presentation: "modal",
+            headerShown: false,
+          }}
+        />
+        <StatusBar style="auto" />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }
