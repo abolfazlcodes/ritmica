@@ -8,6 +8,7 @@ interface IHabitEmojiModalProps {
   setSearch: Dispatch<SetStateAction<string>>;
   setSelectedEmoji: Dispatch<SetStateAction<string | null>>;
   bottomSheetModalRef: React.RefObject<BottomSheetModal | null>;
+  setValue: (field: "emoji", value: string) => void;
 }
 
 const HabitEmojiModal: React.FC<IHabitEmojiModalProps> = ({
@@ -15,6 +16,7 @@ const HabitEmojiModal: React.FC<IHabitEmojiModalProps> = ({
   setSelectedEmoji,
   setSearch,
   bottomSheetModalRef,
+  setValue,
 }) => {
   // emojis filtered
   const emojis = useMemo(() => {
@@ -59,7 +61,8 @@ const HabitEmojiModal: React.FC<IHabitEmojiModalProps> = ({
             return (
               <Pressable
                 onPress={() => {
-                  setSelectedEmoji(emoji);
+                  setSelectedEmoji(emoji); // for UI
+                  setValue("emoji", emoji);
                   if (bottomSheetModalRef) {
                     bottomSheetModalRef?.current?.dismiss();
                   }
