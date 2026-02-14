@@ -90,11 +90,20 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
         </Animated.Text>
         <TextInput
           {...rest}
+          multiline={rest.multiline} // make sure this is passed
+          numberOfLines={rest.numberOfLines} // optional
           value={value}
           onChangeText={handleChangeText}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          style={[styles.input, style]}
+          style={[
+            styles.input,
+            rest.multiline && {
+              height: 20 * (rest.numberOfLines || 4),
+              textAlignVertical: "top",
+            },
+            style,
+          ]}
         />
 
         <Pressable
@@ -127,6 +136,7 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
     color: "#212B36",
+    flexShrink: 1,
   },
   labelDefault: {
     fontWeight: "bold",

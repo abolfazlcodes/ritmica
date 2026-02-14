@@ -8,15 +8,16 @@ import {
   IconClipboardFilled,
   IconHome,
   IconHomeFilled,
+  IconPlusSquare,
   IconUser,
   IconUserFilled,
 } from "@/constants/icons";
+import { router } from "expo-router";
 
 const Layout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: "white",
@@ -31,6 +32,7 @@ const Layout = () => {
         name={"home"}
         options={{
           title: "Home",
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
@@ -43,6 +45,7 @@ const Layout = () => {
         name={"tasks"}
         options={{
           title: "Tasks",
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
@@ -55,6 +58,22 @@ const Layout = () => {
         name={"habits"}
         options={{
           title: "Habits",
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
+          headerRightContainerStyle: {
+            paddingRight: 10,
+          },
+          headerTitleStyle: {
+            color: "#212B36",
+            fontWeight: "700",
+            fontSize: 20,
+            lineHeight: 30,
+          },
+          headerRight: () => (
+            <View style={{ marginRight: 16 }}>
+              <IconPlusSquare onPress={() => router.push("/create-habit")} />
+            </View>
+          ),
           tabBarIcon: ({ focused }) => (
             <TabIcon
               variant={"styled"}
@@ -68,6 +87,7 @@ const Layout = () => {
         name={"analysis"}
         options={{
           title: "Analysis",
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
@@ -80,6 +100,7 @@ const Layout = () => {
         name={"profile"}
         options={{
           title: "Profile",
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
