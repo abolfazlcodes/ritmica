@@ -99,8 +99,15 @@ const Layout = () => {
       <Tabs.Screen
         name={"profile"}
         options={{
-          title: "Profile",
-          headerShown: false,
+          title: "Account",
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            color: "#212B36",
+            fontWeight: "700",
+            fontSize: 20,
+            lineHeight: 30,
+          },
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
