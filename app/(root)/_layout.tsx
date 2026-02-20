@@ -45,7 +45,22 @@ const Layout = () => {
         name={"tasks"}
         options={{
           title: "Tasks",
-          headerShown: false,
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
+          headerRightContainerStyle: {
+            paddingRight: 10,
+          },
+          headerTitleStyle: {
+            color: "#212B36",
+            fontWeight: "700",
+            fontSize: 20,
+            lineHeight: 30,
+          },
+          headerRight: () => (
+            <View style={{ marginRight: 16 }}>
+              <IconPlusSquare onPress={() => router.push("/create-task")} />
+            </View>
+          ),
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
