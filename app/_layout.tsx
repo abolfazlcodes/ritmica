@@ -49,6 +49,13 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="create-task"
+          options={{
+            presentation: "modal",
+            headerShown: false,
+          }}
+        />
         <StatusBar style="auto" />
       </Stack>
     </GestureHandlerRootView>
