@@ -64,7 +64,8 @@
             "/assets/fonts/public-sans/PublicSans-ThinItalic.ttf"
           ]
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker"
     ],
     "experiments": {
       "typedRoutes": true,
